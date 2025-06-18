@@ -1,0 +1,19 @@
+global:
+  window_days: 7
+  enable_scirate: true
+  enable_arxiv: true
+  enable_websites: true
+  batch_size: 6
+
+scirate_users:
+  - id: aram
+    alias: "Aram Harrow"
+    track_own_papers: true
+
+arxiv_authors:
+  - "Harrow, Aram W"
+
+websites:
+  - name: "Aram MIT page"
+    url: "https://web.mit.edu/~aram/"
+    tag: aram
