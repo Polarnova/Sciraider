@@ -20,8 +20,7 @@ UA = "SciraiderBot/0.1"
 class SiteChange:
     name: str
     url: str
-    tag: str
-    ts: datetime
+
 
 
 async def diff_sites(sites: Iterable[SiteCfg], window: timedelta, cache_dir: Path, batch_size: int) -> List[SiteChange]:
@@ -58,6 +57,7 @@ async def diff_sites(sites: Iterable[SiteCfg], window: timedelta, cache_dir: Pat
             mod_time = datetime.fromtimestamp(stat, tz=timezone.utc)
             if not cache_file.exists() or mod_time >= datetime.now(timezone.utc) - window:
                 results.append(SiteChange(site.name, site.url, site.tag, now))
+
             async with aiofiles.open(cache_file, "w") as f:
                 await f.write(sha)
 
