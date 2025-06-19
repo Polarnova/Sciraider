@@ -12,6 +12,6 @@ from datetime import datetime, timezone
 def test_render_digest(tmp_path):
     scite = [SP("Title", "1234.5678", datetime.now(timezone.utc), "user")]
     arxiv = [AP("A Paper", "2345.6789", datetime.now(timezone.utc))]
-    sites = [SiteChange("Site", "tag", datetime.now(timezone.utc))]
+    sites = [SiteChange("Site", "https://example.com", "tag", datetime.now(timezone.utc))]
     html = render_digest(scite, arxiv, sites, "range")
     assert "Sciraider Digest" in html

@@ -27,7 +27,8 @@
 <h2>Updated Websites</h2>
 <ul>
 {% for s in sites %}
-  <li>{{ s.ts.date() }} - {{ s.name }}</li>
+  <li>{{ s.ts.date() }} - <a href="{{ s.url }}">{{ s.name }}</a></li>
+
 {% endfor %}
 </ul>
 {% endif %}

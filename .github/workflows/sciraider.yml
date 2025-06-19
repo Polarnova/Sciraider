@@ -14,14 +14,19 @@ jobs:
           python-version: '3.12'
           cache: 'pip'
       - run: pip install -r requirements.txt
+      - name: Restore .cache across runs
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: ${{ runner.os }}-sciraider-cache
       - id: sciraider
         run: python -m sciraider.cli --cfg config/targets.yaml
       - name: Send Email
         if: steps.sciraider.outputs.sent == 'true'
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.gmail.com
-          server_port: 587
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
           username: ${{ secrets.SMTP_USER }}
           password: ${{ secrets.SMTP_PASS }}
           subject: "[Sciraider] ${{ steps.sciraider.outputs.range }} Digest"
