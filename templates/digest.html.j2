@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Sciraider Digest</title>
+</head>
+<body>
+<h1>Sciraider Digest ({{ range }})</h1>
+<p>Generated {{ generated }} UTC</p>
+{% if scite %}
+<h2>Recent Scites</h2>
+<ul>
+{% for p in scite %}
+  <li>{{ p.ts.date() }} - <a href="https://arxiv.org/abs/{{ p.arxiv_id }}">{{ p.title }}</a> (scited by {{ p.user }})</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% if arxiv %}
+<h2>New arXiv Papers</h2>
+<ul>
+{% for p in arxiv %}
+  <li>{{ p.ts.date() }} - <a href="https://arxiv.org/abs/{{ p.arxiv_id }}">{{ p.title }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+{% if sites %}
+<h2>Updated Websites</h2>
+<ul>
+{% for s in sites %}
+  <li>{{ s.ts.date() }} - <a href="{{ s.url }}">{{ s.name }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
