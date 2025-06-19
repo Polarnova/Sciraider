@@ -20,3 +20,11 @@ python -m sciraider.cli --cfg config/targets.yaml
 
 The GitHub Actions workflow runs this command weekly and sends the email if
 anything changed.
+
+## Common questions
+
+**Q:** Why does Sciraider skip already-seen items?
+
+**A:** The crawler stores fingerprints in the `.cache/` directory. The workflow
+persists that folder between runs using `actions/cache`, so deduplication
+survives across executions.

@@ -24,6 +24,7 @@ class SiteChange:
     ts: datetime
 
 
+
 async def diff_sites(sites: Iterable[SiteCfg], window: timedelta, cache_dir: Path, batch_size: int) -> List[SiteChange]:
     results: list[SiteChange] = []
     cache_dir.mkdir(parents=True, exist_ok=True)

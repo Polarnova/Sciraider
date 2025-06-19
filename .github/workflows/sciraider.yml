@@ -14,6 +14,11 @@ jobs:
           python-version: '3.12'
           cache: 'pip'
       - run: pip install -r requirements.txt
+      - name: Restore .cache across runs
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: ${{ runner.os }}-sciraider-cache
       - id: sciraider
         run: python -m sciraider.cli --cfg config/targets.yaml
       - name: Send Email
